@@ -1,2 +1,1 @@
-Решение задач из книги "Выразительный JavaScript".
-https://karmazzin.gitbooks.io/eloquentjavascript_ru/content/
+# Решение задач из книги "[Выразительный Javascript](https://karmazzin.gitbooks.io/eloquentjavascript_ru/content)".
