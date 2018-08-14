@@ -15,4 +15,30 @@ function Rectangle(character = '#', height = 7)
 	return result;
 }
 
+function FizzBuzz(count = 100)
+{
+	var result = '';
+	for (var i = 1; i <= count; i++)
+	{
+		var fizzOrBuzz = false;
+		
+		if (i % 3 == 0)
+		{
+			result += 'Fizz';
+			fizzOrBuzz = true;
+		}
+		if (i % 5 == 0)
+		{
+			result += 'Buzz';
+			fizzOrBuzz = true;
+		}
+		
+		if (!fizzOrBuzz)
+			result += i;
+		result += ' ';
+	}
+	return result;
+}
+
 console.log(Rectangle());
+console.log(FizzBuzz());
