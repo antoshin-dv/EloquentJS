@@ -18,9 +18,24 @@ function isEven(x)
 	return isEven(x - 2);
 }
 
+// Считает количество символов ch в строке
+function countChar(string, ch)
+{
+	var result = 0;
+	for (var i = 0; i < string.length; i++)
+	{
+		if (string[i] == ch)
+			result++;
+	}
+	return result;
+}
+
 console.log(min(0, 10));
 console.log(min(0, -10));
 
 console.log(isEven(50));
 console.log(isEven(75));
 console.log(isEven(-1));
+
+console.log(countChar('BBC', 'B'));
+console.log(countChar('kakkerlak', 'k'));
