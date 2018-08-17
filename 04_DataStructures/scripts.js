@@ -123,6 +123,42 @@ function ListToArray(list)
 }
 // -------------------------------------------
 
+// Глубокое сравнение
+function DeepEqual(left, right)
+{
+	if (left === null)
+		return right === null;
+	if (right === null)
+		return left === null;
+	
+	var typeLeft = typeof left;
+	var typeRight = typeof right;
+	if (typeLeft != typeRight)
+		return false;
+	if (typeLeft != 'object')
+		return left === right;
+	
+	var fieldsLeft = [], fieldsRight = [];
+	for (var field in left)
+		fieldsLeft.push(field);
+	for (var field in right)
+		fieldsRight.push(field);
+	
+	// Количество полей не равно
+	if (fieldsLeft.length != fieldsRight.length)
+		return false;
+	
+	for (var i = 0; i < fieldsLeft.length; ++i)
+	{
+		var field = fieldsLeft[i];
+		if (!fieldsRight.includes(field) ||
+			!DeepEqual(left[field], right[field]))
+			return false;
+	}
+	
+	return true;
+}
+
 console.log('Проверка функций Range и Sum');
 console.log(Range(1, 10))
 console.log(Range(5, 2, -1));
@@ -139,3 +175,9 @@ console.log(ArrayToList(Range(10, 20)));
 console.log(ListToArray(ArrayToList(Range(10, 30, 2))));
 console.log(Prepend(Prepend(null, 20), 10));
 console.log(Nth(ArrayToList([10, 20, 30]), 1));
+
+console.log('Проверка функции глубокого сравнения');
+var obj = {here: {is: 'an'}, object: 2};
+console.log(DeepEqual(obj, obj));
+console.log(DeepEqual(obj, {here: 1, object: 2}));
+console.log(DeepEqual(obj, {here: {is: 'an'}, object: 2}));
