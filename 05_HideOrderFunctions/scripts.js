@@ -9,6 +9,22 @@ function Flatten(arrays)
 	}, []);
 }
 
+function Every(array, func)
+{
+	for (var i = 0; i < array.length; ++i)
+		if (!func(array[i]))
+			return false;
+	return true;
+}
+
+function Some(array, func)
+{
+	for (var i = 0; i < array.length; ++i)
+		if (func(array[i]))
+			return true;
+	return false;
+}
+
 var arrays = [[1, 2, 3], [4, 5], [6], [12, 22]];
 console.log(Flatten(arrays));
 
@@ -71,3 +87,8 @@ for (var oneGroup in groupsOnCenturies)
 	var ages = groupsOnCenturies[oneGroup].map(function(person) { return person.died - person.born; });
 	console.log(oneGroup + ': ' + average(ages));
 }
+
+console.log(Every([NaN, NaN, NaN], isNaN));
+console.log(Every([NaN, NaN, 4], isNaN));
+console.log(Some([NaN, 3, 4], isNaN));
+console.log(Some([2, 3, 4], isNaN));
