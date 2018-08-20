@@ -44,3 +44,30 @@ ages = ages.filter(function(value) { return value > 0; });
 
 // Результат
 console.log(average(ages));
+
+// ====================================================
+// Разбиение на столетия
+function GroupBy(array, func)
+{
+	var result = {};
+	for (var i = 0; i < array.length; ++i)
+	{
+		var groupName = func(array[i]);
+		if (groupName in result)
+			result[groupName].push(array[i]);	
+		else
+			result[groupName] = [array[i]];
+	}
+	return result;
+}
+
+var groupsOnCenturies = GroupBy(ancestry, function(person)
+{
+	return Math.ceil(person.died / 100);
+});
+
+for (var oneGroup in groupsOnCenturies)
+{
+	var ages = groupsOnCenturies[oneGroup].map(function(person) { return person.died - person.born; });
+	console.log(oneGroup + ': ' + average(ages));
+}
